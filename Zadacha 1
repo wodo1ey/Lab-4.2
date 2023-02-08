@@ -1,0 +1,76 @@
+/*
+Реализовать набор основных действий для работы с деком в виде программы, имеющей следующий интерфейс:
+Выберите действие:
+1.Добавить элемент в начало
+2.Добавить элемент в конец
+3.Удалить элемент из начала
+4.Удалить элемент с конца
+5.Вывести элемент с номером N
+6.Вывести содержимое дека
+7.Вывести количество элементов
+8.Очистить дек
+9.Выход
+*/
+
+#include <iostream>
+#include <deque>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    deque <int> k;
+    deque <int>::iterator p;
+    int n = 0;
+    int sup = 0;
+    cout << "Выберите действие:" << endl << "1. Добавить элемент в начало" << endl << "2. Добавить элемент в конец" << endl << "3. Удалить элемент из начала" << endl << "4. Удалить элемент из конца"
+        << endl << "5. Вывести элемент с номером N" << endl << "6. Вывести содержимое дека" << endl << "7. Вывести количество элементов" << endl << "8. Очистить дек" << endl << "9. Выход" << endl;
+    while (n != 9) {
+        cin >> n;
+        while (abs(n) > 9 || n == 0) {
+            cout << "Введите корректный номер действия:" << endl;
+            cin >> n;
+        }
+        switch (n)
+        {
+        case 1:
+            cout << "Введите значение: ";
+            cin >> sup;
+            k.push_front(sup);
+            break;
+        case 2:
+            cout << "Введите значение: ";
+            cin >> sup;
+            k.push_back(sup);
+            break;
+        case 3: k.pop_front(); break;
+        case 4: k.pop_back(); break;
+        case 5:
+            if (k.size() == 0) {
+                cout << "В настоящий момент дек пуст. Выберете другое действие." << endl;
+                break;
+            }
+            cout << "N = ";
+            cin >> sup;
+            while (k.size() <= sup) {
+                cout << "Элемента с таким номером не существует, повторите попытку. N = ";
+                cin >> sup;
+                if (k.size() > sup) cout << k[sup] << endl;
+            }
+            if (k.size() > sup) cout << k[sup] << endl;
+            break;
+        case 6:
+            if (k.size() == 0) {
+                cout << "В настоящий момент дек пуст. Выберете другое действие." << endl;
+                break;
+            }
+            for (p = k.begin(); p < k.end(); p++) cout << *p << " ";
+            cout << endl;
+            break;
+        case 7: cout << k.size() << endl; break;
+        case 8: k.clear(); break;
+        case 9: n == 9; break;
+        }
+    }
+}
