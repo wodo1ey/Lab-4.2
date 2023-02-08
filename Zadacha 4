@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    ifstream f("test.txt");
+    ifstream f("zadacha_4.txt");
     deque <int> k;
     deque <int>::iterator p;
     int sup = 0;
