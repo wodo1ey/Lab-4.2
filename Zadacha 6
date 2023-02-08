@@ -1,0 +1,40 @@
+//6.	Считать из текстового файла целые числа и занести их в дек. Вывести дек на экран. Удалить из дека все элементы, 
+//значение которых меньше заданного значения k и вывести дек на экран. Посчитать в полученном деке количество элементов, равных значению N.
+
+#include <iostream>
+#include <deque>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    ifstream f("zadacha_6.txt");
+    deque <int> k;
+    deque <int>::iterator p;
+    int sup = 0;
+    while (!f.eof()) {
+        f >> sup;
+        k.push_back(sup);
+    }
+    for (p = k.begin(); p < k.end(); p++) cout << *p << ' ';
+    cout << endl;
+    deque <int> k_sup(k);
+    deque <int>::iterator p_sup;
+    k.clear();
+    int n, x = 0;
+    cin >> n;
+    for (int i = 0; i < k_sup.size(); i++) {
+        if (k_sup[i] > n) {
+            k.push_back(k_sup[i]);
+        }
+        else if (k_sup[i] == n) {
+            k.push_back(k_sup[i]);
+            x++;
+        }
+    }
+    cout << "Получившийся дек:" << endl;
+    for (p = k.begin(); p < k.end(); p++) cout << *p << ' ';
+    cout << endl << "Количество элементов равных " << n << " = " << x;
+}
